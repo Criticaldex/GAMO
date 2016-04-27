@@ -26,7 +26,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="ENTRAR"
-        android:id="@+id/button"
+        android:id="@+id/btEntrar"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="@string/benvingut"
         android:id="@+id/textView2"
-        android:layout_above="@+id/button"
+        android:layout_above="@+id/btEntrar"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -44,7 +44,7 @@
         android:id="@+id/imageView"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo"
         android:layout_above="@+id/textView2"
-        android:scaleType="centerInside" />
+        android:scaleType="centerInside"
+        android:src="@drawable/logo" />
 </RelativeLayout>
