@@ -3,45 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context="com.example.dam.gamo.LoginActivity"
-    style="b">
+    tools:context="com.example.dam.gamo.LoginActivity">
+
+    <ImageView
+        android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:src="@drawable/bg" android:scaleType="matrix" />
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:background="#dd303030"
+        android:background="@color/FonsTransparent"
         android:padding="10px"
         android:alpha="50">
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:background="@color/background_floating_material_dark"
+            android:id="@+id/etUser"
+            android:background="@color/FonsCamps"
             android:padding="10px"
             android:layout_span="50"
             android:layout_margin="5px"
-            android:textColor="@color/Text"
-            android:hint="@string/Login"
-            android:textColorHint="@color/Text"/>
+            android:textColor="@color/TextCamps"
+            android:textColorHint="@color/TextCamps"
+            android:hint="@string/Login"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editText2"
+            android:id="@+id/etPassword"
             android:layout_below="@+id/gridLayout"
             android:layout_alignStart="@+id/gridLayout"
-            android:background="@color/background_floating_material_dark"
+            android:background="@color/FonsCamps"
             android:padding="10px"
             android:layout_span="50"
             android:layout_margin="5px"
-            android:textColor="@color/Text"
+            android:textColor="@color/TextCamps"
             android:hint="@string/Password"
-            android:textColorHint="@color/Text"/>
+            android:textColorHint="@color/TextCamps"/>
 
         <TableRow
             android:layout_width="match_parent"
@@ -53,19 +55,19 @@
                 android:text="Login"
                 android:id="@+id/btLogin"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/button_material_dark"
+                android:background="@color/FonsBotons"
                 android:layout_marginRight="10px"
                 android:layout_marginLeft="10px"
-                android:textColor="@color/Text" />
+                android:textColor="@color/TextBotons" />
 
             <Button
                 android:layout_width="300px"
                 android:layout_height="wrap_content"
                 android:text="Registrarse"
                 android:id="@+id/btRegistrarse"
-                android:background="@color/button_material_dark"
+                android:background="@color/FonsBotons"
                 android:layout_marginLeft="10px"
-                android:textColor="@color/Text" />
+                android:textColor="@color/TextBotons" />
         </TableRow>
 
     </TableLayout>
