@@ -44,7 +44,7 @@
         android:id="@+id/imageButton"
         android:src="@drawable/logo"
         android:scaleType="centerInside"
-        android:background="#00ffffff"
         android:layout_above="@+id/textView2"
-        android:layout_below="@+id/textView" />
+        android:layout_below="@+id/textView"
+        android:background="#00ffffff" />
 </RelativeLayout>
