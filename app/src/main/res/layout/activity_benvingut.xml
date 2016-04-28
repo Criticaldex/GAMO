@@ -19,7 +19,7 @@
         android:text="@string/versio"
         android:textAlignment="center"
         android:textColor="#ff0000"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -39,5 +39,5 @@
         android:layout_above="@+id/textView2"
         android:layout_below="@+id/textView"
         android:background="#00ffffff"
-        android:contentDescription="VesAlLogin" />
+        android:contentDescription="@string/ImageButton" />
 </RelativeLayout>
