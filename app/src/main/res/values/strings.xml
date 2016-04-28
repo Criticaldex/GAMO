@@ -2,5 +2,5 @@
     <string name="app_name">Gamo</string>
     <string name="versio">Versio alpha</string>
     <string name="benvingut">Benvingut a la nostre app mobil, agrairem que ens informeu de qualsevol error o possibles millores que volgueu veure implementades a : MEMGAMO@gmail.com</string>
-    <string name="ImageButton">Ves al Login</string>
+    <string name="ImageButton">Ves all Login</string>
 </resources>
