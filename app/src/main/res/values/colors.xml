@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="Blanc">#FFFFFF</color>
+    <color name="Nigga">#000000</color>
+    <color name="Fons">#fdfdfd</color>
+    <color name="FonsTransparent">#ccfdfdfd</color>
+    <color name="FonsCamps">#cbe7de</color>
+    <color name="FonsBotons">#86c7b3</color>
+    <color name="Text">#85C7B3</color>
+    <color name="TextCamps">#fdfdfd</color>
+    <color name="TextBotons">#fdfdfd</color>
 </resources>
