@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class benvingutActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -13,8 +14,8 @@ public class benvingutActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_benvingut);
         //Button btn = new Button(this);
-        Button btn = (Button) findViewById(R.id.btEntrar);
-        btn.setOnClickListener(this);
+        ImageButton ib = (ImageButton) findViewById(R.id.ibEntrar);
+        ib.setOnClickListener(this);
     }
 
     @Override
