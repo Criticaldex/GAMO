@@ -7,8 +7,9 @@
 
     <ImageView
         android:layout_width="fill_parent" android:layout_height="fill_parent"
-        android:src="@drawable/herba" android:scaleType="fitXY"
-        android:contentDescription="@string/Imatge" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/Imatge"
+        android:src="@drawable/herba" />
 
     <TableLayout
         android:layout_width="fill_parent"
@@ -18,7 +19,8 @@
         android:background="@color/FonsTransparent"
         android:padding="20dp"
         android:alpha="50"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:noHistory="true">
 
         <TextView
             android:layout_width="match_parent"
