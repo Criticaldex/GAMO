@@ -37,8 +37,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-
-
         if (v.getId() == R.id.btLogin) {
             EditText etMail = (EditText) findViewById(R.id.etUser);
             EditText etPass = (EditText) findViewById(R.id.etPassword);
@@ -46,14 +44,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             boolean response = verifica(etPass.getText().toString(), etMail.getText().toString());
             if (response == true) {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            } else {
+            } else if (response == false) {
                 Context context = getApplicationContext();
                 CharSequence text = "Email or password doesnt match";
                 int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
+            } else {
+                Context context = getApplicationContext();
+                CharSequence text = "falla tot";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
+
         } else
             if (v.getId() == R.id.btRegistrarse) {
                 startActivity(new Intent(LoginActivity.this, RegistreActivity.class));
@@ -62,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     protected  boolean  verifica(String password, String mail ) {
-        String str = "localhost/GAMO_WEB-master/API/users/valid.php?email=" + mail + " & ?password= " + password;
+        String str = "localhost/GAMO_WEB-master/API/users/valid.php?email=" + mail + "&password=" + password;
 
         URL url = null;
         try {
