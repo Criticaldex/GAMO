@@ -19,7 +19,8 @@
         android:background="@color/FonsTransparent"
         android:padding="20dp"
         android:alpha="50"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        android:windowSoftInputMode="stateVisible|adjustResize">
 
         <TextView
             android:layout_width="match_parent"
