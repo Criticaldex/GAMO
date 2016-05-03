@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button btLogin=(Button) findViewById(R.id.btLogin);
+        Button btLogin = (Button) findViewById(R.id.btLogin);
         Button btReg = (Button) findViewById(R.id.btRegistrarse);
         btReg.setOnClickListener(this);
         btLogin.setOnClickListener(this);
@@ -37,47 +37,53 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.btLogin) {
+            EditText etMail = (EditText) findViewById(R.id.etUser);
+            EditText etPass = (EditText) findViewById(R.id.etPassword);
 
-
-
-        if (v.getId()==R.id.btLogin){
-            EditText etMail=(EditText) findViewById(R.id.etUser);
-            EditText etPass=(EditText) findViewById(R.id.etPassword);
-
-            boolean response = verifica(etPass.getText().toString(),etMail.getText().toString());
-            if(response==true){
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            }else{
+            boolean response = verifica(etPass.getText().toString(), etMail.getText().toString());
+            if (response == true) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            } else if (response == false) {
                 Context context = getApplicationContext();
                 CharSequence text = "Email or password doesnt match";
                 int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
+            } else {
+                Context context = getApplicationContext();
+                CharSequence text = "falla tot";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
-        }else if (v.getId()==R.id.btRegistrarse){
-            startActivity(new Intent(LoginActivity.this, RegistreActivity.class));
+
+        } else
+            if (v.getId() == R.id.btRegistrarse) {
+                startActivity(new Intent(LoginActivity.this, RegistreActivity.class));
+            }
         }
-    }
 
-    protected  boolean  verifica(String password, String mail ){
-    String str="localhost/GAMO_WEB-master/API/users/valid.php?email="+mail+" & ?password= "+password;
 
-        URL url= null;
+    protected  boolean  verifica(String password, String mail ) {
+        String str = "localhost/GAMO_WEB-master/API/users/valid.php?email=" + mail + "&password=" + password;
+
+        URL url = null;
         try {
             url = new URL(str);
-            URLConnection urlc=url.openConnection();
-            BufferedReader bfr=new BufferedReader(new InputStreamReader(urlc.getInputStream()));
+            URLConnection urlc = url.openConnection();
+            BufferedReader bfr = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
             String line;
-            String response="";
-            JSONObject jo=null;
-            while((line=bfr.readLine())!=null)
-            {
-                JSONArray jsa=new JSONArray(line);
-                for(int x=0;x<jsa.length();x++) {
+            String response = "";
+            JSONObject jo = null;
+            while ((line = bfr.readLine()) != null) {
+                JSONArray jsa = new JSONArray(line);
+                for (int x = 0; x < jsa.length(); x++) {
                     jo = (JSONObject) jsa.get(x);
                 }
-                response=jo.toString();
+                response = jo.toString();
 
             }
 
@@ -95,6 +101,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
         return false;
-
     }
 }
