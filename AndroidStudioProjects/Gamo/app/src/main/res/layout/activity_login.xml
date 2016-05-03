@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dam.gamo.LoginActivity">
+
+    <ImageView
+        android:layout_width="fill_parent" android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/Imatge"
+        android:src="@drawable/herba" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/FonsTransparent"
+        android:padding="20dp"
+        android:alpha="50"
+        android:layout_margin="20dp"
+        android:noHistory="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Login"
+            android:id="@+id/tvLogin"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/Text"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="25dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etUser"
+            android:background="@color/FonsCamps"
+            android:padding="5dp"
+            android:layout_span="50"
+            android:textColor="@color/TextCamps"
+            android:textColorHint="@color/TextCamps"
+            android:hint="@string/Login"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/etPassword"
+            android:layout_below="@+id/gridLayout"
+            android:layout_alignStart="@+id/gridLayout"
+            android:background="@color/FonsCamps"
+            android:padding="5dp"
+            android:layout_span="50"
+            android:textColor="@color/TextCamps"
+            android:hint="@string/Password"
+            android:textColorHint="@color/TextCamps"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Login"
+                android:id="@+id/btLogin"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/FonsBotons"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/TextBotons"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Registrarse"
+                android:id="@+id/btRegistrarse"
+                android:background="@color/FonsBotons"
+                android:layout_marginLeft="30dp"
+                android:textColor="@color/TextBotons"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>
