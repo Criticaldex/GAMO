@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">Gamo</string>
     <string name="versio">Versio alpha</string>
-    <string name="benvingut">Benvingut a la nostre app mobil, agrairem que ens informeu de qualsevol error o possibles millores que volgueu veure implementades a : MEMGAMO@gmail.com</string>
+    <string name="benvingut">Benvingut a la nostre app mobil, agraïm que ens informeu de qualsevol error o possibles millores que volgueu veure implementades a : MEMGAMO@gmail.com</string>
+    <string name="ImageButton">Ves al Login</string>
+    <string name="Login">Login</string>
+    <string name="Registrarse">Registrarse</string>
+    <string name="Registre">Registre</string>
+    <string name="Password">Password</string>
+    <string name="Imatge">fons</string>
+    <string name="Email">Email</string>
+    <string name="Nom">Nom</string>
+    <string name="Cognom">Cognom</string>
+    <string name="Contrasenya">Contrasenya</string>
+    <string name="Repetircontrasenya">Repetir Contrasenya</string>
 </resources>
