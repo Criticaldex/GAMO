@@ -1,10 +1,8 @@
 package com.example.dam.gamo;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,32 +10,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class RegistreActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -48,47 +31,53 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
         Button btReg = (Button) findViewById(R.id.btRegistre);
         btReg.setOnClickListener(this);
     }
+    public void sendByPost(final String[] dades){
+      final  String camp1="aaa";
+         String tag_json_obj = "json_obj_req";
 
-    public void sendPost(String[] dades){
+        String url = "localhost/gamo-web";
 
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Cargando...");
+        pDialog.show();
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://myserveraddress";
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, null,
+                new Response.Listener<JSONObject>() {
 
-        StringRequest strRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>()
-                {
                     @Override
-                    public void onResponse(String response)
-                    {
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                    public void onResponse(JSONObject response) {
+                        Log.d("OK", response.toString());
+                        pDialog.hide();
                     }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error)
-                    {
-                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                })
-        {
+                }, new Response.ErrorListener() {
+
             @Override
-            protected Map<String, String> getParams()
-            {
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("ERR", "Error: " + error.getMessage());
+                pDialog.hide();
+            }
+        }
+        ) {
+
+            @Override
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("tag", "test");
+
+                params.put("email", dades[0]);
+                params.put("nom", dades[1]);
+                params.put("cnom", dades[2]);
+                params.put("pass1", dades[3]);
+                params.put("pass2", dades[4]);
                 return params;
             }
         };
 
-        queue.add(strRequest);
-
+// Añadimos la petición a la cola de peticiones de Volley
+        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
     }
-
-
     @Override
     public void onClick(View v) {
+
         EditText mail = (EditText) findViewById(R.id.etMail);
         EditText nom = (EditText) findViewById(R.id.etNom);
         EditText cnom = (EditText) findViewById(R.id.etCnom);
@@ -113,17 +102,8 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
             String fname = cnom.getText().toString();
             String dateob = pass.getText().toString();
             String add12 = pass2.getText().toString();
-            String[] dades= new String[4];
-            dades[0]=email;
-            dades[1]=pass.toString();
-            dades[2]=pas;
-            dades[3]=fname;
-            sendPost(dades);
+
             startActivity(new Intent(RegistreActivity.this, LoginActivity.class));
         }
     }
-
-
-
-
 }

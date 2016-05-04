@@ -1,18 +1,16 @@
 package com.example.dam.gamo;
 
+import android.app.Application;
+import android.text.TextUtils;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.Volley;
+
 /**
- * Created by cabre_000 on 2/5/2016.
+ * Created by cabre_000 on 4/5/2016.
  */
-
-        import android.app.Application;
-        import android.text.TextUtils;
-
-        import com.android.volley.Request;
-        import com.android.volley.RequestQueue;
-        import com.android.volley.toolbox.ImageLoader;
-        import com.android.volley.toolbox.Volley;
-
-
 public class AppController extends Application {
     public static final String TAG = AppController.class
             .getSimpleName();

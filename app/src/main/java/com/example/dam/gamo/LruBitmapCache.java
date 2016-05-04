@@ -1,7 +1,7 @@
 package com.example.dam.gamo;
 
 /**
- * Created by cabre_000 on 2/5/2016.
+ * Created by cabre_000 on 4/5/2016.
  */import android.graphics.Bitmap;
 import android.util.LruCache;
 
