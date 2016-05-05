@@ -32,10 +32,9 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
         btReg.setOnClickListener(this);
     }
     public void sendByPost(final String[] dades){
-      final  String camp1="aaa";
          String tag_json_obj = "json_obj_req";
 
-        String url = "localhost/gamo-web";
+        String url = "localhost/GAMO_WEB-master/API/users/valid.php";
 
         final ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Cargando...");
@@ -65,9 +64,9 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
 
                 params.put("email", dades[0]);
                 params.put("nom", dades[1]);
-                params.put("cnom", dades[2]);
-                params.put("pass1", dades[3]);
-                params.put("pass2", dades[4]);
+                params.put("lastname", dades[2]);
+                params.put("password1", dades[3]);
+                params.put("password2", dades[4]);
                 return params;
             }
         };
@@ -86,8 +85,8 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
 
         if(mail.getText().toString().equals("") || nom.getText().toString().equals("") || cnom.getText().toString().equals("") || pass.getText().toString().equals("") || pass2.getText().toString().equals("")){
             new AlertDialog.Builder(this)
-                    .setTitle("Ayy Caramba!!")
-                    .setMessage("No has omplert tots els camps!!")
+                    .setTitle("hey watch it!!")
+                    .setMessage("you have to fill all the fields")
                     .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // No fer res
@@ -97,12 +96,13 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
                     .show();
         }
         else{
-            String email = mail.getText().toString();
-            String pas = nom.getText().toString();
-            String fname = cnom.getText().toString();
-            String dateob = pass.getText().toString();
-            String add12 = pass2.getText().toString();
-
+            String[] dades = new String[5];
+            dades[0] = mail.getText().toString();
+            dades[1] = nom.getText().toString();
+            dades[2] = cnom.getText().toString();
+            dades[3] = pass.getText().toString();
+            dades[4] = pass2.getText().toString();
+            sendByPost(dades);
             startActivity(new Intent(RegistreActivity.this, LoginActivity.class));
         }
     }

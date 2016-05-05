@@ -41,8 +41,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             EditText etMail = (EditText) findViewById(R.id.etUser);
             EditText etPass = (EditText) findViewById(R.id.etPassword);
 
-            boolean response = verifica(etPass.getText().toString(), etMail.getText().toString());
-            if (response == true) {
+            String response = verifica(etPass.getText().toString(), etMail.getText().toString());
+            /*if (response == true) {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             } else if (response == false) {
                 Context context = getApplicationContext();
@@ -58,8 +58,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-            }
+            }*/
+            Context context = getApplicationContext();
+            CharSequence text = response;
+            int duration = Toast.LENGTH_SHORT;
 
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         } else
             if (v.getId() == R.id.btRegistrarse) {
                 startActivity(new Intent(LoginActivity.this, RegistreActivity.class));
@@ -67,8 +72,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
-    protected  boolean  verifica(String password, String mail ) {
-        String str = "localhost/GAMO_WEB-master/API/users/valid.php?email=" + mail + "&password=" + password;
+    protected  String  verifica(String password, String mail ) {
+        String str = "http://localhost/GAMO_WEB-master/API/users/valid.php?email=" + mail + "&password=" + password;
 
         URL url = null;
         try {
@@ -85,13 +90,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 response = jo.toString();
 
-            }
+            } return response;
 
-            if (response.trim().equals("true")) {
+           /* if (response.trim().equals("true")) {
                 return true;
             } else {
                 return false;
-            }
+            }*/
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -100,6 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+        return "fatal";
+      //  return false;
     }
 }
