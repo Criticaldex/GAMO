@@ -41,8 +41,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             EditText etMail = (EditText) findViewById(R.id.etUser);
             EditText etPass = (EditText) findViewById(R.id.etPassword);
 
-            String response = verifica(etPass.getText().toString(), etMail.getText().toString());
-            /*if (response == true) {
+            boolean response = verifica(etPass.getText().toString(), etMail.getText().toString());
+            if (response == true) {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             } else if (response == false) {
                 Context context = getApplicationContext();
@@ -58,13 +58,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-            }*/
-            Context context = getApplicationContext();
-            CharSequence text = response;
-            int duration = Toast.LENGTH_SHORT;
+            }
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
         } else
             if (v.getId() == R.id.btRegistrarse) {
                 startActivity(new Intent(LoginActivity.this, RegistreActivity.class));
@@ -72,16 +67,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
-    protected  String  verifica(String password, String mail ) {
+    protected boolean  verifica(String password, String mail ) {
         String str = "http://localhost/GAMO_WEB-master/API/users/valid.php?email=" + mail + "&password=" + password;
-
+        boolean outbool=false;
         URL url = null;
+        String response = "";
         try {
             url = new URL(str);
             URLConnection urlc = url.openConnection();
             BufferedReader bfr = new BufferedReader(new InputStreamReader(urlc.getInputStream()));
             String line;
-            String response = "";
             JSONObject jo = null;
             while ((line = bfr.readLine()) != null) {
                 JSONArray jsa = new JSONArray(line);
@@ -90,13 +85,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 response = jo.toString();
 
-            } return response;
+            }
 
-           /* if (response.trim().equals("true")) {
-                return true;
-            } else {
-                return false;
-            }*/
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -105,7 +96,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "fatal";
-      //  return false;
+        if (response.trim().equals("true")) {
+            outbool=true;
+            return outbool;
+        } else {
+
+            return outbool;
+        }
+
     }
 }
