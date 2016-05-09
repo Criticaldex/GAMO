@@ -10,12 +10,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
@@ -32,28 +36,23 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
         btReg.setOnClickListener(this);
     }
     public void sendByPost(final String[] dades){
-         String tag_json_obj = "json_obj_req";
 
-        String url = "localhost/GAMO_WEB-master/API/users/valid.php";
+        String url = "http://10.0.2.2/GAMO_WEB-master/API/users/valid.php";
 
-        final ProgressDialog pDialog = new ProgressDialog(this);
-        pDialog.setMessage("Cargando...");
-        pDialog.show();
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, null,
-                new Response.Listener<JSONObject>() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()  {
 
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("OK", response.toString());
-                        pDialog.hide();
+                    public void onResponse(String response) {
+                        Toast.makeText(RegistreActivity.this,response,Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("ERR", "Error: " + error.getMessage());
-                pDialog.hide();
+                Toast.makeText(RegistreActivity.this,error.toString(),Toast.LENGTH_LONG).show();
             }
         }
         ) {
@@ -63,16 +62,19 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
                 Map<String, String> params = new HashMap<String, String>();
 
                 params.put("email", dades[0]);
-                params.put("nom", dades[1]);
+                params.put("name", dades[1]);
                 params.put("lastname", dades[2]);
-                params.put("password1", dades[3]);
-                params.put("password2", dades[4]);
+                params.put("pass1", dades[3]);
+                params.put("pass2", dades[4]);
+
+
                 return params;
             }
         };
 
 // Añadimos la petición a la cola de peticiones de Volley
-        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
     @Override
     public void onClick(View v) {
@@ -92,8 +94,7 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
                             // No fer res
                         }
                     })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+                    .setIcon(android.R.drawable.ic_dialog_alert).show();
         }
         else{
             String[] dades = new String[5];
