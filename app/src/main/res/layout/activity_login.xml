@@ -46,7 +46,7 @@
             android:layout_span="50"
             android:textColor="@color/TextCamps"
             android:textColorHint="@color/TextCamps"
-            android:hint="@string/Login"
+            android:hint="@string/Email"
             android:gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
