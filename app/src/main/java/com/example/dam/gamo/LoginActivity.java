@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void userLogin() {
         username = editTextUsername.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
-        LOGIN_URL = "http://10.0.2.2/gamo/API/users/valid.php?email=aaa&password=aaa";
+        LOGIN_URL = "http://10.0.2.2/gamo/API/users/valid.php?email="+ username +"&password="+ password +"";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, LOGIN_URL,
                 new Response.Listener<String>() {
