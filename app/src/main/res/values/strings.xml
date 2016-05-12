@@ -13,4 +13,9 @@
     <string name="Cognom">Cognom</string>
     <string name="Contrasenya">Contrasenya</string>
     <string name="Repetircontrasenya">Repetir Contrasenya</string>
+    <string-array name="menu_array">
+        <item>Perfil</item>
+        <item>Llistat events</item>
+        <item>Llistat Proves</item>
+    </string-array>
 </resources>
