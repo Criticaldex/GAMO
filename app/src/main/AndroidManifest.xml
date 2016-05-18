@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dam.gamo">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".AppController"
         android:allowBackup="true"
@@ -18,7 +20,8 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".RegistreActivity"></activity>
+        <activity android:name=".RegistreActivity" />
+        <activity android:name=".ProvesActivity"></activity>
     </application>
 
 </manifest>
