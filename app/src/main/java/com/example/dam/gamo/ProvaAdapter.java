@@ -55,7 +55,7 @@ public class ProvaAdapter  extends ArrayAdapter<Prova> {
         }
 
         Prova Prova = data.get(position);
-        String cadenaUrl="http://10.0.2.2/GAMO_WEB-master/images/Provas/"+Prova.id+"/"+Prova.url;
+        String cadenaUrl=Prova.url;
         holder.nom.setText(Prova.nom);
         Uri urltouri= Uri.parse(cadenaUrl);
         holder.imgIcon.setImageURI(urltouri);

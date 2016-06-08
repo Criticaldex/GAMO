@@ -1,5 +1,6 @@
 package com.example.dam.gamo;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,7 +8,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,18 +37,19 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
     public static final String KEY_USERNAME="email";
     public boolean repe=false;
     public String username="";
+    public String IP ="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registre);
+        setupUI(findViewById(R.id.parent2));
         Button btReg = (Button) findViewById(R.id.btRegistre);
         btReg.setOnClickListener(this);
+        IP = getResources().getString(R.string.IP);
     }
     public void sendByPost(final String[] dades){
-
-        String url = "http://www.gamo.ml/API/users/valid.php";
-
-
+        String url = IP+"/API/users/valid.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()  {
@@ -72,7 +77,6 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
                 params.put("lastname", dades[2]);
                 params.put("password1", dades[3]);
                 params.put("password2", dades[4]);
-
 
                 return params;
             }
@@ -112,7 +116,7 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
             boolpassl=true;
         }
         if(!pass.equals(pass2) && vuit==false){
-            cadenaerr+=" \nYour passwords dosen't match.";
+            cadenaerr+=" \nYour passwords doesn't match.";
             boolpass=false;
         }
         if(boolemail!=true && vuit==false){
@@ -133,14 +137,13 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
     private boolean  userLogin() {
         EditText mail = (EditText) findViewById(R.id.etMail);
         username=mail.getText().toString();
-        String  LOGIN_URL = "http://10.0.2.2/GAMO_WEB-master/API/users/mail.php?email="+ username+"";
+        String  LOGIN_URL = IP+"/API/users/mail.php?email="+ username;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, LOGIN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         EditText mail = (EditText) findViewById(R.id.etMail);
-
                         EditText nom = (EditText) findViewById(R.id.etNom);
                         EditText cnom = (EditText) findViewById(R.id.etCnom);
                         EditText pass = (EditText) findViewById(R.id.etPassword);
@@ -213,5 +216,37 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+
+    public void setupUI(View view) {
+
+        //Set up touch listener for non-text box views to hide keyboard.
+        if(!(view instanceof EditText)) {
+
+            view.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(RegistreActivity.this);
+                    return false;
+                }
+
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+
+                View innerView = ((ViewGroup) view).getChildAt(i);
+
+                setupUI(innerView);
+            }
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 }

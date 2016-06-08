@@ -1,13 +1,19 @@
 package com.example.dam.gamo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -43,10 +49,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextPassword;
     private Button buttonLogin;
     private Button buttonReg;
+    private EditText et1;
+    private EditText et2;
 
     private String username;
     private String password;
     public String LOGIN_URL = "";
+    public String IP = "";
+    public RelativeLayout rl;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,17 +67,53 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextUsername = (EditText) findViewById(R.id.etUser);
         editTextPassword = (EditText) findViewById(R.id.etPassword);
 
+
         buttonLogin = (Button) findViewById(R.id.btLogin);
         buttonReg = (Button) findViewById(R.id.btRegistrarse);
         buttonReg.setOnClickListener(this);
         buttonLogin.setOnClickListener(this);
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout);
+        layout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
+
+        IP = ((NET) this.getApplication()).getIP();
+        Toast.makeText(LoginActivity.this,IP,Toast.LENGTH_LONG).show();
+
+        //rl = findViewById(R.id.mainLayout).setOnTouchListener(this);
+
+     /*   et1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+        et2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });*/
     }
 
 
     private void userLogin() {
         username = editTextUsername.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
-        LOGIN_URL = "http://10.0.2.2/GAMO_WEB-master/API/users/valid.php?email="+ username +"&password="+ password +"";
+
+
+        LOGIN_URL = IP +"/API/users/valid.php?email="+ username +"&password="+ password;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, LOGIN_URL,
                 new Response.Listener<String>() {
@@ -120,10 +168,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if(bolmail==true) {
                 userLogin();
             }else{
-                Toast.makeText(LoginActivity.this,"Write your email in the first box please",Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this,"Your Email is not correct",Toast.LENGTH_LONG).show();
             }
         } else if (v.getId() == R.id.btRegistrarse) {
             startActivity(new Intent(LoginActivity.this, RegistreActivity.class));
         }
+    }
+
+    protected void hideKeyboard(View view)
+    {
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 }

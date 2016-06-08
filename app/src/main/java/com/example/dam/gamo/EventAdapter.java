@@ -3,6 +3,7 @@ package com.example.dam.gamo;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 //import com.github.snowdream.android.widget.SmartImageView;
+
+import com.android.volley.toolbox.NetworkImageView;
 
 import java.util.ArrayList;
 
@@ -40,7 +43,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
             row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new EventHolder();
-            holder.imgIcon = (ImageView)row.findViewById(R.id.image);
+            holder.imgIcon = (NetworkImageView)row.findViewById(R.id.image);
             holder.txtTitle = (TextView)row.findViewById(R.id.tvTit);
             holder.descripcio=(TextView)row.findViewById(R.id.tvDescr);
             holder.dataI=(TextView)row.findViewById(R.id.tvDataI);
@@ -53,7 +56,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
         }
 
         Event Event = data.get(position);
-        String cadenaUrl="http://10.0.2.2/GAMO_WEB-master/images/events/"+Event.id+"/"+Event.url;
+        String cadenaUrl= Event.url;
         holder.txtTitle.setText(Event.titol);
         Uri urltouri= Uri.parse(cadenaUrl);
         holder.imgIcon.setImageURI(urltouri);
@@ -65,7 +68,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
     static class EventHolder
     {
-        ImageView imgIcon;
+        NetworkImageView imgIcon;
         TextView txtTitle;
         TextView descripcio;
         TextView dataI;

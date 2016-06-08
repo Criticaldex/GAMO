@@ -39,6 +39,7 @@ public class MainActivity  extends AppCompatActivity {
     private ListView mDrawerList;
     private ListView listView;
     private String usuari;
+    private String IP = "";
     Event ev;
     EventAdapter adapter;
 
@@ -69,6 +70,7 @@ public class MainActivity  extends AppCompatActivity {
 
         Intent intent = getIntent();
         usuari = intent.getStringExtra(LoginActivity.KEY_USERNAME);
+        IP = ((NET) this.getApplication()).getIP();
     }
 
    public class ItemClickListener implements ListView.OnItemClickListener {
@@ -89,13 +91,23 @@ public class MainActivity  extends AppCompatActivity {
 }
 
     /* The click listner for ListView in the navigation drawer */
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+    private class DrawerItemClickListener implements android.widget.AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             selectItem(position);
 
+            switch (position) {
+                case 0:
+                    Intent intent = new Intent(MainActivity.this, PerfilActivity.class);
+                    intent.putExtra("user",usuari);
+                    startActivity(intent);
+                    break;
+                case 1:
+                    Intent intent2 = new Intent(MainActivity.this, MainActivity.class);
 
-
+                    startActivity(intent2);
+                    break;
+            }
         }
 
         private void selectItem(int position) {
@@ -107,9 +119,11 @@ public class MainActivity  extends AppCompatActivity {
         }
     }
 
+
+
     public void onStart() {
 
-        LOGIN_URL = "http://10.0.2.2/GAMO_WEB-master/API/events/getEvents.php";
+        LOGIN_URL = IP +"/API/events/getEvents.php";
         super.onStart();
         // Create request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -128,7 +142,8 @@ public class MainActivity  extends AppCompatActivity {
                               ev.descripcio= jsonObject.getString("descripcio");
                                ev.dataInici= jsonObject.getString("dataInici");
                                 ev.dataFinal=jsonObject.getString("dataFinal");
-                                ev.url=jsonObject.getString("imatges");
+                                ev.url=IP+"/images/events/"+ev.id+"/";
+                                ev.url+=jsonObject.getString("imatges");
                                 aldata.add(ev);
 
                             } catch (JSONException e) {

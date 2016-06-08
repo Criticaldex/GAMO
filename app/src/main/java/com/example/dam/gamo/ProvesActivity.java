@@ -35,6 +35,7 @@ public class ProvesActivity extends AppCompatActivity {
     ProvaAdapter adapter;
     ArrayList<Prova> aldataProva;
 
+    public String IP = "";
     public String LOGIN_URL = "";
 
     @Override
@@ -50,14 +51,14 @@ public class ProvesActivity extends AppCompatActivity {
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, menu));
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
+        Intent intent = getIntent();
         ListView listView = (ListView) findViewById(R.id.list);
         aldataProva = new ArrayList<Prova>();
         adapter = new ProvaAdapter(this, R.layout.item_layout_prova,aldataProva);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new ItemClickListener());
-        Intent intent = getIntent();
         usuari = intent.getStringExtra(LoginActivity.KEY_USERNAME);
+        IP = ((NET) this.getApplication()).getIP();
     }
 
     public class ItemClickListener implements ListView.OnItemClickListener {
@@ -108,7 +109,7 @@ public class ProvesActivity extends AppCompatActivity {
         {
              evId =(String) b.get("idEvent");
         }
-        LOGIN_URL = "http://10.0.2.2/GAMO_WEB-master/API/events/getProves.php?eventId="+evId;
+        LOGIN_URL = IP+"/API/events/getProves.php?eventId="+evId;
         super.onStart();
         // Create request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -121,27 +122,29 @@ public class ProvesActivity extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             try {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                pr.nom=(jsonObject.getString("nom"));
-                                pr.tancament_inscripcionts=(jsonObject.getString("tancament_inscripcionts"));
-                                pr.url=(jsonObject.getString("imatges"));
-                                pr.data_hora_inici=(jsonObject.getString("data_hora_inici"));
-                                pr.descripcio=(jsonObject.getString("descripcio"));
-                                pr.limit_inscrits=(jsonObject.getString("limit_inscrits"));
-                                pr.desnivellAcumulat=(jsonObject.getString("desnivellAcumulat"));
-                                pr.desnivellNegatiu=(jsonObject.getString("desnivellNegatiu"));
-                                pr.desnivellPositiu=(jsonObject.getString("desnivellPositiu"));
-                                pr.distancia=(jsonObject.getString("distancia"));
-                                pr.esports=(jsonObject.getString("esport"));
-                                pr.direccio=(jsonObject.getString("estat"));
-                                pr.direccio+=", "+(jsonObject.getString("regio"));
-                                pr.direccio+=", "+(jsonObject.getString("poblacio"));
-                                pr.direccio+=", "+(jsonObject.getString("direccio"));
-                                pr.modalitat=(jsonObject.getString("modalitat"));
-                                pr.num_avituallaments=(jsonObject.getString("num_avituallaments"));
-                                pr.preu=(jsonObject.getString("preu"));
-                                pr.pagina_organitzacio=(jsonObject.getString("pagina_organitzacio"));
-                                pr.obertura_inscripcions=(jsonObject.getString("obertura_inscripcions"));
-                                pr.temps_limit=(jsonObject.getString("temps_limit"));
+                                pr.id=jsonObject.getString("Id");
+                                pr.nom=jsonObject.getString("nom");
+                                pr.tancament_inscripcionts=jsonObject.getString("tancament_inscripcionts");
+                                pr.url=IP+"/images/events/"+pr.id+"/";
+                                pr.url+=jsonObject.getString("Imatges");
+                                pr.data_hora_inici=jsonObject.getString("data_hora_inici");
+                                pr.descripcio=jsonObject.getString("descripcio");
+                                pr.limit_inscrits=jsonObject.getString("limit_inscrits");
+                                pr.desnivellAcumulat=jsonObject.getString("desnivellAcumulat");
+                                pr.desnivellNegatiu=jsonObject.getString("desnivellNegatiu");
+                                pr.desnivellPositiu=jsonObject.getString("desnivellPositiu");
+                                pr.distancia=jsonObject.getString("distancia");
+                                pr.esports=jsonObject.getString("esports");
+                                pr.direccio=jsonObject.getString("estat");
+                                pr.direccio+=", "+jsonObject.getString("regio");
+                                pr.direccio+=", "+jsonObject.getString("poblacio");
+                                pr.direccio+=", "+jsonObject.getString("direccio");
+                                pr.modalitat=jsonObject.getString("modalitat");
+                                pr.num_avituallaments=jsonObject.getString("num_avituallaments");
+                                pr.preu=jsonObject.getString("preu");
+                                pr.pagina_organitzacio=jsonObject.getString("pagina_organitzacio");
+                                pr.obertura_inscripcions=jsonObject.getString("obertura_inscripcions");
+                                pr.temps_limit=jsonObject.getString("temps_limit");
                                 aldataProva.add(pr);
                             } catch (JSONException e) {
                                 e.printStackTrace();
