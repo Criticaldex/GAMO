@@ -1,1 +1,1 @@
-include ':app', ':volley'
+include ':app', ':volley', ':android-smart-image-view-1.0.0'
