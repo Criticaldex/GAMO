@@ -33,24 +33,15 @@ import java.util.ArrayList;
 public class PerfilActivity extends AppCompatActivity {
 
     public static final String KEY_USERNAME="username";
-
-    private String mail="";
-    private String[] menu;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    User us;
-    ArrayAdapter<String> adapter;
-
-   // ImageLoader imgLoader= AppController.getInstance(this).getImageLoader();
-
-
     //ArrayList<Event> aldata;
     public String IP = "";
     public String url = "";
-
-
+    User us;
+    ArrayAdapter<String> adapter;
     TextView email;
     TextView nom ;
+
+   // ImageLoader imgLoader= AppController.getInstance(this).getImageLoader();
     TextView cNom ;
     TextView dataNaix ;
     TextView esport ;
@@ -64,13 +55,16 @@ public class PerfilActivity extends AppCompatActivity {
     TextView talla;
     // NetworkImageView img ;
     TextView club ;
-
+    private String mail="";
+    private String[] menu;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
-        IP = ((NET) this.getApplication()).getIP();
+        IP = getResources().getString(R.string.IP);
         us=new User();
         email = (TextView) findViewById(R.id.tvEmail);
         nom = (TextView) findViewById(R.id.tvName);
@@ -105,32 +99,6 @@ public class PerfilActivity extends AppCompatActivity {
 
     }
 
-    private class DrawerItemClickListener implements android.widget.AdapterView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-
-            switch (position) {
-                case 0:
-                    Intent intent = new Intent(PerfilActivity.this, PerfilActivity.class);
-                    startActivity(intent);
-                    break;
-                case 1:
-                    Intent intent2 = new Intent(PerfilActivity.this, MainActivity.class);
-                    intent2.putExtra(KEY_USERNAME, mail);
-                    startActivity(intent2);
-                    break;
-            }
-        }
-
-        private void selectItem(int position) {
-
-            // update selected item and title, then close the drawer
-            mDrawerList.setItemChecked(position, true);
-            setTitle(menu[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
-        }
-    }
     public void onStart() {
         super.onStart();
         Intent intent = getIntent();
@@ -255,5 +223,32 @@ public class PerfilActivity extends AppCompatActivity {
                 });
         // add json array request to the request queue
         requestQueue.add(jsonObjectRequest);*/
+    }
+
+    private class DrawerItemClickListener implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+
+            switch (position) {
+                case 0:
+                    Intent intent = new Intent(PerfilActivity.this, PerfilActivity.class);
+                    startActivity(intent);
+                    break;
+                case 1:
+                    Intent intent2 = new Intent(PerfilActivity.this, MainActivity.class);
+                    intent2.putExtra(KEY_USERNAME, mail);
+                    startActivity(intent2);
+                    break;
+            }
+        }
+
+        private void selectItem(int position) {
+
+            // update selected item and title, then close the drawer
+            mDrawerList.setItemChecked(position, true);
+            setTitle(menu[position]);
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
     }
 }

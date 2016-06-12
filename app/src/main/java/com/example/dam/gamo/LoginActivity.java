@@ -41,23 +41,20 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Object Exeption;
-
     public static final String KEY_USERNAME="username";
     public static final String KEY_PASSWORD="password";
+    public String LOGIN_URL = "";
+    public String IP = "";
+    public RelativeLayout rl;
+    private Object Exeption;
     private EditText editTextUsername;
     private EditText editTextPassword;
     private Button buttonLogin;
     private Button buttonReg;
     private EditText et1;
     private EditText et2;
-
     private String username;
     private String password;
-    public String LOGIN_URL = "";
-    public String IP = "";
-    public RelativeLayout rl;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +70,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         buttonReg.setOnClickListener(this);
         buttonLogin.setOnClickListener(this);
 
+        IP = getResources().getString(R.string.IP);
+
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout);
         layout.setOnTouchListener(new View.OnTouchListener()
         {
@@ -84,7 +83,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        IP = ((NET) this.getApplication()).getIP();
         Toast.makeText(LoginActivity.this,IP,Toast.LENGTH_LONG).show();
 
         //rl = findViewById(R.id.mainLayout).setOnTouchListener(this);

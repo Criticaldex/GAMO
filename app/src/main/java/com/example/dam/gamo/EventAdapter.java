@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 //import com.github.snowdream.android.widget.SmartImageView;
 
-import com.android.volley.toolbox.NetworkImageView;
-
 import java.util.ArrayList;
 
 /**
@@ -43,7 +41,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
             row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new EventHolder();
-            holder.imgIcon = (NetworkImageView)row.findViewById(R.id.image);
+            holder.imgIcon = (ImageView)row.findViewById(R.id.image);
             holder.txtTitle = (TextView)row.findViewById(R.id.tvTit);
             holder.descripcio=(TextView)row.findViewById(R.id.tvDescr);
             holder.dataI=(TextView)row.findViewById(R.id.tvDataI);
@@ -68,7 +66,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
     static class EventHolder
     {
-        NetworkImageView imgIcon;
+        ImageView imgIcon;
         TextView txtTitle;
         TextView descripcio;
         TextView dataI;

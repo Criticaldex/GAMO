@@ -7,6 +7,18 @@ import android.os.Parcelable;
  * Created by cabre_000 on 22/5/2016.
  */
 public class Prova implements Parcelable {
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Prova> CREATOR = new Parcelable.Creator<Prova>() {
+        @Override
+        public Prova createFromParcel(Parcel in) {
+            return new Prova(in);
+        }
+
+        @Override
+        public Prova[] newArray(int size) {
+            return new Prova[size];
+        }
+    };
     /*
     esports
     idevent
@@ -130,17 +142,4 @@ public class Prova implements Parcelable {
         dest.writeString(limit_inscrits);
         dest.writeString(direccio);
     }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Prova> CREATOR = new Parcelable.Creator<Prova>() {
-        @Override
-        public Prova createFromParcel(Parcel in) {
-            return new Prova(in);
-        }
-
-        @Override
-        public Prova[] newArray(int size) {
-            return new Prova[size];
-        }
-    };
 }

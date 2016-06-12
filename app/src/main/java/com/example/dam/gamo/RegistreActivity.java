@@ -38,6 +38,18 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
     public boolean repe=false;
     public String username="";
     public String IP ="";
+    boolean valid=false;
+    String[] dades = new String[5];
+    boolean boolemail = true;
+    boolean boolpass= true;
+    String cadenaerr="";
+    boolean vuit=false;
+    boolean boolpassl=false;
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +60,7 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
         btReg.setOnClickListener(this);
         IP = getResources().getString(R.string.IP);
     }
+
     public void sendByPost(final String[] dades){
         String url = IP+"/API/users/valid.php";
 
@@ -86,8 +99,7 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-    boolean valid=false;
-    String[] dades = new String[5];
+
     @Override
     public void onClick(View v) {
         boolemail = true;
@@ -100,6 +112,7 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
+
     public String[] validation(String mail,String nom ,String cnom,String pass,String pass2){
 
         boolemail=emailValidator(mail);
@@ -128,11 +141,6 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
         return dades;
 
     }
-    boolean boolemail = true;
-    boolean boolpass= true;
-    String cadenaerr="";
-    boolean vuit=false;
-    boolean boolpassl=false;
 
     private boolean  userLogin() {
         EditText mail = (EditText) findViewById(R.id.etMail);
@@ -207,7 +215,6 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
         return repe;
     }
 
-
     public boolean emailValidator(String email)
     {
         Pattern pattern;
@@ -243,10 +250,5 @@ public class RegistreActivity extends AppCompatActivity implements View.OnClickL
                 setupUI(innerView);
             }
         }
-    }
-
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 }

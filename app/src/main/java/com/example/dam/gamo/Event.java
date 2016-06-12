@@ -7,6 +7,18 @@ import android.os.Parcelable;
  * Created by cabre_000 on 20/5/2016.
  */
 public class Event implements Parcelable {
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
     String titol;
     String id;
     String url;
@@ -14,6 +26,7 @@ public class Event implements Parcelable {
     String dataInici;
     String dataFinal;
     public Event(){super();}
+
     public Event( String titol,String id,String descripcio, String dataInici, String dataFinal,String url){
         this.id=id;
         this.titol=titol;
@@ -46,17 +59,4 @@ public class Event implements Parcelable {
         dest.writeString(dataInici);
         dest.writeString(dataFinal);
     }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Event> CREATOR = new Parcelable.Creator<Event>() {
-        @Override
-        public Event createFromParcel(Parcel in) {
-            return new Event(in);
-        }
-
-        @Override
-        public Event[] newArray(int size) {
-            return new Event[size];
-        }
-    };
 }

@@ -26,17 +26,18 @@ import java.util.ArrayList;
 
 public class ProvesActivity extends AppCompatActivity {
 
+    public String IP = "";
+    public String LOGIN_URL = "";
+    Prova pr;
+    ProvaAdapter adapter;
+    ArrayList<Prova> aldataProva;
+    NET net;
     private TextView textView;
     private String[] menu;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private String usuari;
-    Prova pr;
-    ProvaAdapter adapter;
-    ArrayList<Prova> aldataProva;
-    public String IP = "";
-    public String LOGIN_URL = "";
-    NET net;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,7 @@ public class ProvesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         usuari = intent.getStringExtra(LoginActivity.KEY_USERNAME);
-        IP = ((NET) this.getApplication()).getIP();
+        IP = getResources().getString(R.string.IP);
         net=(NET) this.getApplication();
         menu = getResources().getStringArray(R.array.menu_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -65,46 +66,6 @@ public class ProvesActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new ItemClickListener());
 
-    }
-
-    public class ItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Prova prova = aldataProva.get(position);
-            Intent intent = new Intent(ProvesActivity.this, ProvaActivity.class);
-            net.setPr(prova);
-            startActivity(intent);
-
-
-        }
-
-        private void selectItem(int position) {
-
-
-        }
-    }
-
-
-    /* The click listner for ListView in the navigation drawer */
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            selectItem(position);
-            switch (position) {
-                case 0:
-              /*     Prova prova = aldataProva.get(position);
-                    Intent intent = new Intent(ProvesActivity.this, ProvaActivity.class);
-                    intent.putExtra("prova",prova);
-                    startActivity(intent);*/
-                    break;
-            }
-        }
-
-        private void selectItem(int position) {
-            mDrawerList.setItemChecked(position, true);
-            setTitle(menu[position]);
-            mDrawerLayout.closeDrawer(mDrawerList);
-        }
     }
 
     public void onStart() {
@@ -169,5 +130,48 @@ public class ProvesActivity extends AppCompatActivity {
                 });
         // add json array request to the request queue
         requestQueue.add(jsonArrayRequest);
+    }
+
+    public class ItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Prova prova = aldataProva.get(position);
+            Intent intent = new Intent(ProvesActivity.this, ProvaActivity.class);
+            net.setPr(prova);
+            startActivity(intent);
+
+
+        }
+
+        private void selectItem(int position) {
+
+
+        }
+    }
+
+    /* The click listner for ListView in the navigation drawer */
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+            switch (position) {
+                case 0:
+                    Intent intent = new Intent(ProvesActivity.this, PerfilActivity.class);
+                    intent.putExtra("user",usuari);
+                    startActivity(intent);
+                    break;
+                case 1:
+                    Intent intent2 = new Intent(ProvesActivity.this, MainActivity.class);
+
+                    startActivity(intent2);
+                    break;
+            }
+        }
+
+        private void selectItem(int position) {
+            mDrawerList.setItemChecked(position, true);
+            setTitle(menu[position]);
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
     }
 }

@@ -7,27 +7,23 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.example.dam.gamo.util.LruBitmapCache;
 
-/**
- * Created by cabre_000 on 4/5/2016.
- */
 public class AppController extends Application {
-    public static final String TAG = AppController.class
-            .getSimpleName();
 
+    public static final String TAG = AppController.class.getSimpleName();
+    private static AppController mInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
 
-    private static AppController mInstance;
+    public static synchronized AppController getInstance() {
+        return mInstance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-    }
-
-    public static synchronized AppController getInstance(PerfilActivity perfilActivity) {
-        return mInstance;
     }
 
     public RequestQueue getRequestQueue() {
@@ -48,7 +44,7 @@ public class AppController extends Application {
     }
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
-        // asigna un valor a tag si tag está vacío
+        // set the default tag if tag is empty
         req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         getRequestQueue().add(req);
     }
@@ -63,4 +59,5 @@ public class AppController extends Application {
             mRequestQueue.cancelAll(tag);
         }
     }
+
 }

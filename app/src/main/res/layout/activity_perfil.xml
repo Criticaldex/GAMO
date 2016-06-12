@@ -6,30 +6,30 @@
     tools:context="com.example.dam.gamo.PerfilActivity">
 
     <ImageView
-        android:layout_width="fill_parent" android:layout_height="fill_parent"
-        android:src="@drawable/boiramontanya" android:scaleType="matrix"
-        android:id="@+id/imageView"
-        android:contentDescription="@string/Imatge" />
+        android:id="@+id/imageView" android:layout_width="fill_parent"
+        android:layout_height="fill_parent" android:contentDescription="@string/Imatge"
+        android:scaleType="matrix"
+        android:src="@drawable/boiramontanya" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:alpha="50"
         android:background="@color/FonsTransparent"
         android:padding="20dp"
-        android:alpha="50"
-        android:layout_margin="20dp"
-        android:windowSoftInputMode="stateVisible|adjustResize"
-        android:id="@+id/relativeLayout">
+        android:windowSoftInputMode="stateVisible|adjustResize">
 
         <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/imageView2"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/imageView2"
-            android:src="@drawable/logo"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -41,50 +41,50 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name:"
                     android:id="@+id/tv1"
-                    android:layout_below="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:layout_below="@+id/imageView2"
                     android:padding="5dp"
+                    android:text="Name:"
                     android:textSize="10dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
                     android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView2"
-                    android:layout_toEndOf="@+id/tv1"
                     android:layout_column="1"
-                    android:padding="5dp"
-                    android:textStyle="bold"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Country:"
-                    android:id="@+id/textView21"
-                    android:layout_below="@+id/imageView2"
                     android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="2"
                     android:padding="5dp"
-                    android:textSize="10dp"
-                    android:layout_marginLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/tvCountry"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView2"
+                    android:layout_column="2"
+                    android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="3"
                     android:padding="5dp"
-                    android:textStyle="bold"
+                    android:text="Country:"
                     android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tvCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_column="3"
+                    android:layout_toEndOf="@+id/tv1"
+                    android:padding="5dp"
+                    android:text="New Text"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
 
             </TableRow>
 
@@ -93,49 +93,49 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Last Name:"
-                    android:id="@+id/textView9"
-                    android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:layout_column="0"
                     android:padding="5dp"
+                    android:text="Last Name:"
                     android:textSize="10dp" />
 
                 <TextView
+                    android:id="@+id/tvLastName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/tvLastName"
                     android:layout_column="1"
                     android:padding="5dp"
-                    android:textStyle="bold"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Region:"
-                    android:id="@+id/textView23"
-                    android:layout_below="@+id/imageView2"
-                    android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="2"
-                    android:padding="5dp"
-                    android:textSize="10dp"
-                    android:layout_marginLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/tvRegion"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView2"
+                    android:layout_column="2"
+                    android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="3"
                     android:padding="5dp"
-                    android:textStyle="bold"
+                    android:text="Region:"
                     android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tvRegion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_column="3"
+                    android:layout_toEndOf="@+id/tv1"
+                    android:padding="5dp"
+                    android:text="New Text"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -143,45 +143,45 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:text="Email:"
                     android:id="@+id/textView11"
                     android:layout_column="0"
                     android:padding="5dp"
+                    android:text="Email:"
                     android:textSize="10dp" />
 
                 <TextView
+                    android:id="@+id/tvEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/tvEmail"
                     android:layout_column="1"
                     android:padding="5dp"
-                    android:textStyle="bold"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="City:"
-                    android:id="@+id/textView26"
-                    android:layout_below="@+id/imageView2"
-                    android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="2"
-                    android:padding="5dp"
-                    android:textSize="10dp"
-                    android:layout_marginLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/tvCity"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView2"
+                    android:layout_column="2"
+                    android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="3"
                     android:padding="5dp"
-                    android:textStyle="bold"
+                    android:text="City:"
                     android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tvCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_column="3"
+                    android:layout_toEndOf="@+id/tv1"
+                    android:padding="5dp"
+                    android:text="New Text"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -189,45 +189,45 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Birthdate:"
-                    android:id="@+id/textView17"
                     android:layout_column="0"
                     android:padding="5dp"
+                    android:text="Birthdate:"
                     android:textSize="10dp" />
 
                 <TextView
-                    android:text="New Text"
                     android:id="@+id/tvBirthdate"
                     android:layout_column="1"
                     android:padding="5dp"
-                    android:textStyle="bold"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Adress:"
-                    android:id="@+id/textView27"
-                    android:layout_below="@+id/imageView2"
-                    android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="2"
-                    android:padding="5dp"
-                    android:textSize="10dp"
-                    android:layout_marginLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/tvAdress"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView2"
+                    android:layout_column="2"
+                    android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="3"
                     android:padding="5dp"
-                    android:textStyle="bold"
+                    android:text="Adress:"
                     android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tvAdress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_column="3"
+                    android:layout_toEndOf="@+id/tv1"
+                    android:padding="5dp"
+                    android:text="New Text"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -235,45 +235,45 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="T-Shirt size:"
-                    android:id="@+id/textView18"
                     android:layout_column="0"
                     android:padding="5dp"
+                    android:text="T-Shirt size:"
                     android:textSize="10dp" />
 
                 <TextView
-                    android:text="New Text"
                     android:id="@+id/tvShirt"
                     android:layout_column="1"
                     android:padding="5dp"
-                    android:textStyle="bold"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Postal code:"
-                    android:id="@+id/textView30"
-                    android:layout_below="@+id/imageView2"
-                    android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="2"
-                    android:padding="5dp"
-                    android:textSize="10dp"
-                    android:layout_marginLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/tvCp"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView2"
+                    android:layout_column="2"
+                    android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="3"
                     android:padding="5dp"
-                    android:textStyle="bold"
+                    android:text="Postal code:"
                     android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tvCp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_column="3"
+                    android:layout_toEndOf="@+id/tv1"
+                    android:padding="5dp"
+                    android:text="New Text"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -281,45 +281,45 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Club:"
-                    android:id="@+id/textView19"
                     android:layout_column="0"
                     android:padding="5dp"
+                    android:text="Club:"
                     android:textSize="10dp" />
 
                 <TextView
-                    android:text="New Text"
                     android:id="@+id/tvClub"
                     android:layout_column="1"
                     android:padding="5dp"
-                    android:textStyle="bold"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Personal phone:"
-                    android:id="@+id/textView31"
-                    android:layout_below="@+id/imageView2"
-                    android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="2"
-                    android:padding="5dp"
-                    android:textSize="10dp"
-                    android:layout_marginLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/tvPhone"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView2"
+                    android:layout_column="2"
+                    android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="3"
                     android:padding="5dp"
-                    android:textStyle="bold"
+                    android:text="Personal phone:"
                     android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_column="3"
+                    android:layout_toEndOf="@+id/tv1"
+                    android:padding="5dp"
+                    android:text="New Text"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
             </TableRow>
 
             <TableRow
@@ -327,45 +327,45 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Favourite sport:"
-                    android:id="@+id/textView20"
                     android:layout_column="0"
                     android:padding="5dp"
+                    android:text="Favourite sport:"
                     android:textSize="10dp" />
 
                 <TextView
-                    android:text="New Text"
                     android:id="@+id/tvSport"
                     android:layout_column="1"
                     android:padding="5dp"
-                    android:textStyle="bold"
-                    android:textSize="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Emergency phone:"
-                    android:id="@+id/textView32"
-                    android:layout_below="@+id/imageView2"
-                    android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="2"
-                    android:padding="5dp"
-                    android:textSize="10dp"
-                    android:layout_marginLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/tvEmergency"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/imageView2"
+                    android:layout_column="2"
+                    android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@+id/tv1"
-                    android:layout_column="3"
                     android:padding="5dp"
-                    android:textStyle="bold"
+                    android:text="Emergency phone:"
                     android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tvEmergency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_column="3"
+                    android:layout_toEndOf="@+id/tv1"
+                    android:padding="5dp"
+                    android:text="New Text"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
             </TableRow>
 
         </TableLayout>

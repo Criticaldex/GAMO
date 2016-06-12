@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
-        android:layout_width="fill_parent" android:layout_height="fill_parent"
-        android:scaleType="centerCrop"
+        android:id="@+id/fons" android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:contentDescription="@string/Imatge"
-        android:src="@drawable/herba"
-        android:id="@+id/fons" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/herba" />
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/FonsTransparent"
-        android:padding="20dp"
-        android:alpha="50"
-        android:noHistory="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:alpha="50"
+        android:background="@color/FonsTransparent"
+        android:noHistory="true"
+        android:padding="20dp">
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tvTitol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTitol"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:textStyle="bold"
                 android:layout_alignParentEnd="true"
-                android:layout_span="4" />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_span="4"
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow
@@ -41,13 +41,13 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView10"
                 android:layout_width="198dp"
                 android:layout_height="wrap_content"
-                android:text="Description: "
-                android:id="@+id/textView10"
                 android:layout_below="@+id/tvTitol"
+                android:layout_column="2"
                 android:layout_toEndOf="@+id/imatge"
-                android:layout_column="2" />
+                android:text="Description: " />
         </TableRow>
 
         <TableRow
@@ -58,40 +58,17 @@
                 android:id="@+id/imatge"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_below="@+id/tvTitol"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tvTitol" />
 
             <TextView
+                android:id="@+id/tvdescript"
                 android:layout_width="207dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvdescript"
-                android:layout_below="@+id/textView10"
                 android:layout_alignBottom="@+id/imatge"
                 android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/imatge"
-                android:layout_span="3" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sport:"
-                android:id="@+id/textView11"
-                android:layout_below="@+id/imatge"
-                android:layout_alignEnd="@+id/imatge"
-                android:layout_alignParentStart="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvesp"
-                android:layout_below="@+id/imatge"
-                android:layout_alignEnd="@+id/textView10"
+                android:layout_below="@+id/textView10"
+                android:layout_span="3"
                 android:layout_toEndOf="@+id/imatge" />
 
         </TableRow>
@@ -101,19 +78,42 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modality"
-                android:id="@+id/textView12"
-                android:layout_alignTop="@+id/tvesp"
-                android:layout_toEndOf="@+id/textView10" />
+                android:layout_alignEnd="@+id/imatge"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imatge"
+                android:text="Sport:" />
 
             <TextView
+                android:id="@+id/tvesp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/textView10"
+                android:layout_below="@+id/imatge"
+                android:layout_toEndOf="@+id/imatge" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tvesp"
+                android:layout_toEndOf="@+id/textView10"
+                android:text="Modality" />
+
+            <TextView
                 android:id="@+id/tvModality"
-                android:layout_alignTop="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/tvdescript"
+                android:layout_alignTop="@+id/textView12"
                 android:layout_toEndOf="@+id/textView12" />
         </TableRow>
 
@@ -122,15 +122,15 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="max inscriptions:"
-                android:id="@+id/textView24" />
+                android:text="max inscriptions:" />
 
             <TextView
+                android:id="@+id/tvmains"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvmains" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow
@@ -138,19 +138,19 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inscription opening:"
-                android:id="@+id/textView13"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView11"
-                android:layout_alignParentStart="true" />
+                android:text="Inscription opening:" />
 
             <TextView
+                android:id="@+id/tvInsop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvInsop"
-                android:layout_alignTop="@+id/textView13"
                 android:layout_alignEnd="@+id/tvesp"
+                android:layout_alignTop="@+id/textView13"
                 android:layout_toEndOf="@+id/textView13" />
 
         </TableRow>
@@ -160,19 +160,19 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inscription closing:"
-                android:id="@+id/textView14"
+                android:layout_alignStart="@+id/textView12"
                 android:layout_alignTop="@+id/tvInsop"
-                android:layout_alignStart="@+id/textView12" />
+                android:text="Inscription closing:" />
 
             <TextView
+                android:id="@+id/tvinsclose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvinsclose"
-                android:layout_alignTop="@+id/textView14"
                 android:layout_alignEnd="@+id/tvModality"
+                android:layout_alignTop="@+id/textView14"
                 android:layout_toEndOf="@+id/textView14" />
         </TableRow>
 
@@ -181,19 +181,19 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Acumulated slope:"
-                android:id="@+id/textView15"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView13"
-                android:layout_alignParentStart="true" />
+                android:text="Acumulated slope:" />
 
             <TextView
+                android:id="@+id/tvdesac"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvdesac"
-                android:layout_below="@+id/tvInsop"
                 android:layout_alignEnd="@+id/tvInsop"
+                android:layout_below="@+id/tvInsop"
                 android:layout_toEndOf="@+id/textView15" />
 
         </TableRow>
@@ -203,19 +203,19 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Positive slope:"
-                android:id="@+id/textView19"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView17"
-                android:layout_alignParentStart="true" />
+                android:text="Positive slope:" />
 
             <TextView
+                android:id="@+id/tvdesp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvdesp"
-                android:layout_below="@+id/tvDistance"
                 android:layout_alignEnd="@+id/tvDistance"
+                android:layout_below="@+id/tvDistance"
                 android:layout_toEndOf="@+id/textView19" />
 
         </TableRow>
@@ -225,23 +225,23 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Negative slope:"
-                android:id="@+id/textView20"
                 android:layout_below="@+id/tvDistance"
+                android:layout_column="0"
                 android:layout_toEndOf="@+id/tvDistance"
-                android:layout_column="0" />
+                android:text="Negative slope:" />
 
             <TextView
+                android:id="@+id/tvdesn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvdesn"
                 android:layout_above="@+id/tvdataInici"
                 android:layout_alignEnd="@+id/tvnumav"
                 android:layout_alignTop="@+id/textView20"
-                android:layout_toEndOf="@+id/textView20"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:layout_toEndOf="@+id/textView20" />
 
         </TableRow>
 
@@ -250,19 +250,19 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Distance:"
-                android:id="@+id/textView17"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView15"
-                android:layout_alignParentStart="true" />
+                android:text="Distance:" />
 
             <TextView
+                android:id="@+id/tvDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvDistance"
-                android:layout_alignTop="@+id/textView17"
                 android:layout_alignEnd="@+id/tvInsop"
+                android:layout_alignTop="@+id/textView17"
                 android:layout_toEndOf="@+id/textView17" />
         </TableRow>
 
@@ -271,21 +271,21 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Checkpoints:"
-                android:id="@+id/textView16"
                 android:layout_above="@+id/textView20"
-                android:layout_alignStart="@+id/textView20" />
+                android:layout_alignStart="@+id/textView20"
+                android:text="Checkpoints:" />
 
             <TextView
+                android:id="@+id/tvnumav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvnumav"
+                android:layout_above="@+id/textView20"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/textView16"
-                android:layout_toEndOf="@+id/textView20"
-                android:layout_above="@+id/textView20" />
+                android:layout_toEndOf="@+id/textView20" />
 
         </TableRow>
 
@@ -294,19 +294,19 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Limit time:"
-                android:id="@+id/textView21"
+                android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView19"
-                android:layout_alignParentStart="true" />
+                android:text="Limit time:" />
 
             <TextView
+                android:id="@+id/tvLimittemps"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvLimittemps"
-                android:layout_alignTop="@+id/textView21"
                 android:layout_alignEnd="@+id/tvdesp"
+                android:layout_alignTop="@+id/textView21"
                 android:layout_toEndOf="@+id/textView21" />
         </TableRow>
 
@@ -315,15 +315,15 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Prise"
-                android:id="@+id/textView22" />
+                android:text="Prise" />
 
             <TextView
+                android:id="@+id/tvPrise"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvPrise" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow
@@ -331,17 +331,17 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start deate:"
-                android:id="@+id/textView18"
                 android:layout_alignTop="@+id/tvLimittemps"
-                android:layout_toEndOf="@+id/tvLimittemps" />
+                android:layout_toEndOf="@+id/tvLimittemps"
+                android:text="Start deate:" />
 
             <TextView
+                android:id="@+id/tvdataInici"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvdataInici"
                 android:layout_alignEnd="@+id/tvdesn"
                 android:layout_alignTop="@+id/textView18"
                 android:layout_toEndOf="@+id/textView18" />
@@ -353,15 +353,15 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="location"
-                android:id="@+id/textView25" />
+                android:text="location" />
 
             <TextView
+                android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvLocation" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
         <TableRow
@@ -369,15 +369,15 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="organicer webside:"
-                android:id="@+id/textView23" />
+                android:text="organicer webside:" />
 
             <TextView
+                android:id="@+id/tvOrganicer"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvOrganicer" />
+                android:layout_height="wrap_content" />
         </TableRow>
 
     </TableLayout>

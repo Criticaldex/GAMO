@@ -33,6 +33,10 @@ import java.util.ArrayList;
 
 public class MainActivity  extends AppCompatActivity {
 
+    public String LOGIN_URL = "";
+    Event ev;
+    EventAdapter adapter;
+    ArrayList<Event> aldata;
     private TextView textView;
     private String[] menu;
     private DrawerLayout mDrawerLayout;
@@ -40,12 +44,6 @@ public class MainActivity  extends AppCompatActivity {
     private ListView listView;
     private String usuari;
     private String IP = "";
-    Event ev;
-    EventAdapter adapter;
-
-    ArrayList<Event> aldata;
-
-    public String LOGIN_URL = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,19 +59,61 @@ public class MainActivity  extends AppCompatActivity {
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-         listView = (ListView) findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.list);
         aldata = new ArrayList<Event>();
 
-            adapter = new EventAdapter(this, R.layout.item_layout,aldata);
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new ItemClickListener());
+        adapter = new EventAdapter(this, R.layout.item_layout,aldata);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new ItemClickListener());
 
         Intent intent = getIntent();
         usuari = intent.getStringExtra(LoginActivity.KEY_USERNAME);
-        IP = ((NET) this.getApplication()).getIP();
+        IP = getResources().getString(R.string.IP);
     }
 
-   public class ItemClickListener implements ListView.OnItemClickListener {
+    public void onStart() {
+
+        LOGIN_URL = IP +"/API/events/getEvents.php";
+        super.onStart();
+        // Create request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        //Create json array request
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, LOGIN_URL,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray jsonArray) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            try {
+                                ev=new Event();
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                ev.titol=jsonObject.getString("titol");
+                                ev.id=jsonObject.getString("Id");
+                                ev.descripcio= jsonObject.getString("descripcio");
+                                ev.dataInici= jsonObject.getString("dataInici");
+                                ev.dataFinal=jsonObject.getString("dataFinal");
+                                ev.url=IP+"/images/events/"+ev.id+"/";
+                                ev.url+=jsonObject.getString("imatges");
+                                aldata.add(ev);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Log.e("Error", "Unable to parse json array");
+                    }
+                });
+        // add json array request to the request queue
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    public class ItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Event eve = aldata.get(position);
@@ -84,11 +124,11 @@ public class MainActivity  extends AppCompatActivity {
 
         }
 
-    private void selectItem(int position) {
+        private void selectItem(int position) {
 
 
+        }
     }
-}
 
     /* The click listner for ListView in the navigation drawer */
     private class DrawerItemClickListener implements android.widget.AdapterView.OnItemClickListener {
@@ -117,49 +157,5 @@ public class MainActivity  extends AppCompatActivity {
             setTitle(menu[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
         }
-    }
-
-
-
-    public void onStart() {
-
-        LOGIN_URL = IP +"/API/events/getEvents.php";
-        super.onStart();
-        // Create request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        //Create json array request
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, LOGIN_URL,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray jsonArray) {
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            try {
-                                 ev=new Event();
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                              ev.titol=jsonObject.getString("titol");
-                                ev.id=jsonObject.getString("Id");
-                              ev.descripcio= jsonObject.getString("descripcio");
-                               ev.dataInici= jsonObject.getString("dataInici");
-                                ev.dataFinal=jsonObject.getString("dataFinal");
-                                ev.url=IP+"/images/events/"+ev.id+"/";
-                                ev.url+=jsonObject.getString("imatges");
-                                aldata.add(ev);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        Log.e("Error", "Unable to parse json array");
-                    }
-                });
-        // add json array request to the request queue
-        requestQueue.add(jsonArrayRequest);
     }
 }
